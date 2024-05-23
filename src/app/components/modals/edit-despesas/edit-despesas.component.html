@@ -1,31 +1,28 @@
 <div class="modal-header">
     <h5 class="modal-title">Editar Despesa</h5>
-    <button class="close" type="button" class="close" (click)="cancelar()" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
+    <button class="close" type="button" (click)="cancelar()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
     </button>
-</div>
-<div class="modal-body">
+  </div>
+  <div class="modal-body">
     <form [formGroup]="form" (ngSubmit)="editar()">
-        <div class="form-group">
-            <label for="Unidade">Unidade</label>
-            <input type="text" id="Unidade" name="Unidade" formControlName="Unidade" class="form-control"
-                placeholder="Insira com LT, KG..." required>
-        </div>
-        <div class="form-group">
-            <label for="desc_desp">Descrição</label>
-            <input type="text" id="desc_desp" name="desc_desp" formControlName="desc_desp" class="form-control"
-                placeholder="Descreva o consumo" required>
-        </div>
-        <div class="form-group">
-            <label for="tp_desp">Tipo</label>
-            <input type="text" id="tp_desp" name="tp_desp" formControlName="tp_desp" class="form-control"
-                placeholder="Abastecimento? Alimentação?" required>
-        </div>
-        <div class="form-group">
-            <label for="valor_unit">Valor Unitário</label>
-            <input type="number" id="valor_unit" name="valor_unit" formControlName="valor_unit" class="form-control"
-                placeholder="Valor gasto com o consumo" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Adicionar</button>
+      <div class="form-group">
+        <label for="Unidade">Unidade</label>
+        <input type="text" id="Unidade" name="Unidade" formControlName="Unidade" class="form-control" placeholder="Insira com LT, KG..." required>
+      </div>
+      <div class="form-group">
+        <label for="desc_desp">Descrição</label>
+        <input type="text" id="desc_desp" name="desc_desp" formControlName="desc_desp" class="form-control" placeholder="Descreva o consumo" required>
+      </div>
+      <div class="form-group">
+        <label for="tp_desp">Tipo</label>
+        <input type="text" id="tp_desp" name="tp_desp" formControlName="tp_desp" class="form-control" placeholder="Abastecimento? Alimentação?" required>
+      </div>
+      <div class="form-group">
+        <label for="valor_unit">Valor Unitário</label>
+        <input type="number" id="valor_unit" name="valor_unit" formControlName="valor_unit" class="form-control" placeholder="Valor gasto com o consumo" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
-</div>
+  </div>
+  

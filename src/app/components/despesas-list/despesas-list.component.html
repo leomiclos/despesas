@@ -1,10 +1,23 @@
 <div class="screen">
-  <button class="po-md-4 custom-button" (click)="adicionarDespesa()">Adicionar Despesa</button>
-  <div>
-    <po-table [p-columns]="columns" [p-items]="despesas" [p-striped]="true" (p-delete-items)="excluirDespesa($event)"
-    [p-loading-show-more]="isLoading"
-    [p-actions]="actions" >
-    </po-table>
-    
+  <div class="actions"> 
+    <button class="po-md-4 custom-button" (click)="adicionarDespesa()">Adicionar Despesa</button>
+
+    <po-input [(ngModel)]="searchTerm" p-label="Pesquisar" placeholder="Digite para pesquisar..."
+      (p-change)="filtrarDespesas()">
+    </po-input>
   </div>
+
+  <div *ngIf="isLoadingFiltering; else dataSection">
+    <!-- Indicador de carregamento -->
+    <div class="loading-indicator">Carregando...</div>
+  </div>
+
+  <ng-template #dataSection>
+    <!-- Seção de dados da tabela -->
+    <div>
+      <po-table [p-columns]="columns" [p-items]="despesas" [p-striped]="true" (p-delete-items)="excluirDespesa($event)"
+        [p-loading-show-more]="isLoading" [p-actions]="actions">
+      </po-table>
+    </div>
+  </ng-template>
 </div>

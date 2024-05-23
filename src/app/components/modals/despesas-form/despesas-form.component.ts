@@ -47,6 +47,8 @@ export class DespesasFormComponent {
         Swal.fire({
           icon: 'success',
           title: 'Despesa inserida com sucesso',
+          confirmButtonColor: 'rgb(119, 191, 12) '
+
         }).then(res => {
           if (res.isConfirmed) {
             window.location.reload()
@@ -74,6 +76,7 @@ export class DespesasFormComponent {
         icon: 'error',
         title: 'Erro de Validação',
         text: `Os seguintes campos são inválidos: ${message}`,
+        confirmButtonColor: 'rgb(119, 191, 12)'
       })
     }
   }

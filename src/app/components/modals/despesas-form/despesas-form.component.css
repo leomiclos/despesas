@@ -53,3 +53,12 @@
     color: rgb(119,191,12);
     border: none;
   }
+  .custom-swal-button {
+    height: 50px !important;
+    border-radius: 10px !important;
+    margin-top: 10px !important;
+    background-color: rgb(119, 191, 12) !important;
+    color: #f1f1f1 !important;
+    border: none !important;
+  }
+  
