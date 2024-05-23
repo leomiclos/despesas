@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
-import { PoButtonModule, PoCheckboxModule, PoDialogService, PoNotificationService, PoTableAction, 
+import { PoButtonModule, PoCheckboxModule, PoDialogService, PoNotificationService, PoTableAction,
          PoModalAction, PoTableColumn, PoModalComponent, PoModalModule, PoTextareaComponent } from '@po-ui/ng-components';
 import { Despesa } from '../../../model/despesa';
 import { BsModalRef } from 'ngx-bootstrap/modal';
@@ -43,18 +43,27 @@ export class DespesasFormComponent {
   adicionar() {
     if (this.form.valid) {
       console.log(this.form.value);
-      this.despesaService.createDespesa(this.form.value).subscribe(() => {
+      try {
+        this.despesaService.createDespesa(this.form.value).subscribe(() => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Despesa inserida com sucesso',
+            confirmButtonColor: 'rgb(119, 191, 12)'
+          }).then(res => {
+            if (res.isConfirmed) {
+              window.location.reload();
+            }
+          });
+        });
+      } catch (error) {
+        console.error('Erro ao tentar adicionar despesa:', error);
         Swal.fire({
-          icon: 'success',
-          title: 'Despesa inserida com sucesso',
-          confirmButtonColor: 'rgb(119, 191, 12) '
-
-        }).then(res => {
-          if (res.isConfirmed) {
-            window.location.reload()
-          }
-        })
-      });
+          icon: 'error',
+          title: 'Erro ao adicionar despesa',
+          text: 'Ocorreu um erro ao tentar adicionar a despesa. Por favor, tente novamente mais tarde.',
+          confirmButtonColor: 'rgb(119, 191, 12)'
+        });
+      }
     } else {
       const invalidFields = [];
 
@@ -77,9 +86,10 @@ export class DespesasFormComponent {
         title: 'Erro de Validação',
         text: `Os seguintes campos são inválidos: ${message}`,
         confirmButtonColor: 'rgb(119, 191, 12)'
-      })
+      });
     }
   }
+
 
 
   cancelar() {

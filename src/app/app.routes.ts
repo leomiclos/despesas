@@ -1,9 +1,13 @@
 import { Routes } from '@angular/router';
+import { LoginComponent } from './components/login/login.component';
+import { LayoutComponent } from './layout/layout/layout.component';
 import { DespesasListComponent } from './components/despesas-list/despesas-list.component';
 
+
 export const routes: Routes = [
-  { path: '', redirectTo: '/despesas', pathMatch: 'full' },
-  { path: 'despesas', component: DespesasListComponent },
-  // { path: 'despesas/add', component: DespesasFormComponent },
-  // { path: 'despesas/edit/:id', component: DespesasFormComponent }
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: '', component: LayoutComponent, children: [
+    { path: 'despesas', component: DespesasListComponent },
+  ]},
 ];

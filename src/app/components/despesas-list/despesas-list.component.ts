@@ -20,10 +20,14 @@ import { FormsModule } from '@angular/forms';
 })
 export class DespesasListComponent {
 
+
+
+
   isLoading: boolean = false;
   despesas: Despesa[] = [];
   modalRef!: BsModalRef;
   searchTerm: string = '';
+  id: number = 0
 
   actions: PoTableAction[] = [
     {
@@ -46,6 +50,7 @@ export class DespesasListComponent {
     { property: 'valor_unit', label: 'Valor Unitário', type: 'currency', format: 'BRL' }
   ];
   isLoadingFiltering: boolean = false;
+  notHave: boolean = false;;
 
   constructor(
     private despesaService: DespesasService,
@@ -97,18 +102,38 @@ export class DespesasListComponent {
     });
   }
 
-  filtrarDespesas() {
-    this.isLoadingFiltering = true;
-    if (this.searchTerm.trim()) {
-      this.despesas = this.despesas.filter(despesa =>
-        despesa.desc_desp.toLowerCase().includes(this.searchTerm.trim().toLowerCase())
-      );
+  filtrarDespesasPorId(id: number) {
+    if(id) {
+      this.despesaService.getDespesasById(id).subscribe(response => {
+        if(response.length > 0 || response[0] !== undefined) {
+          console.log(response);
+          this.despesas = response;
+        } else {
+          console.log("Nenhum resultado encontrado.");
+          // Aqui você pode tomar alguma ação, como exibir uma mensagem ao usuário
+        }
+      });
     } else {
       this.getAllDespesas();
     }
 
+    // Adicionando um temporizador para lidar com o caso em que a consulta leva muito tempo
     setTimeout(() => {
-      this.isLoadingFiltering = false;
-    }, 2000);
+      if(this.despesas.length === 0) {
+        console.log("Tempo de espera esgotado. Nenhum resultado encontrado.");
+        // Aqui você pode tomar alguma ação, como exibir uma mensagem ao usuário
+      }
+    }, 5000); // Espera 5 segundos antes de verificar se não há resultados
+  }
+
+
+  filtrarDespesas(term: any) {
+    if (term.trim()) {
+      this.despesas = this.despesas.filter(despesa =>
+        despesa.desc_desp.toLowerCase().includes(term.trim().toLowerCase())
+      );
+    } else {
+      this.getAllDespesas();
+    }
   }
 }

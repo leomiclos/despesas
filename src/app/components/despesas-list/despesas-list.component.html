@@ -1,22 +1,35 @@
 <div class="screen">
-  <div class="actions"> 
-    <button class="po-md-4 custom-button" (click)="adicionarDespesa()">Adicionar Despesa</button>
+  <div class="actions">
+    <button class="po-md-4 custom-button" (click)="adicionarDespesa()">
+      Adicionar Despesa
+    </button>
+    <div class="inputs">
+      <po-input [(ngModel)]="searchTerm" p-label="Pesquisar por descrição" placeholder="Digite para pesquisar..."
+        (keyup)="filtrarDespesas(searchTerm)">
+      </po-input>
 
-    <po-input [(ngModel)]="searchTerm" p-label="Pesquisar" placeholder="Digite para pesquisar..."
-      (p-change)="filtrarDespesas()">
-    </po-input>
+      <div class="input-id">
+        <po-input [(ngModel)]="id" p-label="Pesquisar por ID" placeholder="Digite o ID para buscar"
+          (keyup.enter)="filtrarDespesasPorId(id)">
+        </po-input>
+        <button class="button-search po-md-3 custom-button" p-label="Buscar" (click)="filtrarDespesasPorId(id)">
+          Buscar
+        </button>
+      </div>
+
+    </div>
   </div>
 
   <div *ngIf="isLoadingFiltering; else dataSection">
-    <!-- Indicador de carregamento -->
     <div class="loading-indicator">Carregando...</div>
+  </div>
+  <div *ngIf="notHave;">
+    <div class="loading-indicator">Não há dados</div>
   </div>
 
   <ng-template #dataSection>
-    <!-- Seção de dados da tabela -->
     <div>
-      <po-table [p-columns]="columns" [p-items]="despesas" [p-striped]="true" (p-delete-items)="excluirDespesa($event)"
-        [p-loading-show-more]="isLoading" [p-actions]="actions">
+      <po-table [p-columns]="columns" [p-items]="despesas" [p-striped]="true" (p-delete-items)="excluirDespesa($event)" [p-actions]="actions">
       </po-table>
     </div>
   </ng-template>

@@ -8,6 +8,7 @@ import {
   PoMenuModule,
   PoPageModule,
   PoToolbarModule,
+  PoToolbarProfile,
 } from '@po-ui/ng-components';
 
 @Component({
@@ -19,7 +20,8 @@ import {
     PoToolbarModule,
     PoMenuModule,
     PoPageModule,
-    HttpClientModule,
+    HttpClientModule
+
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
@@ -28,4 +30,7 @@ export class AppComponent {
   readonly menus: Array<PoMenuItem> = [
     { label: 'Home'},
   ];
+
+  profile!: PoToolbarProfile;
+
 }
