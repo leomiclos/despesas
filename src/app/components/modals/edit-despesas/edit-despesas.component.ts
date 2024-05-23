@@ -36,7 +36,7 @@ export class EditDespesasComponent {
 
   editar() {
     const form = this.form.value;
-    form.cod_desp = this.despesaExistente.cod_desp; // Ensure the ID is included
+    form.cod_desp = this.despesaExistente.cod_desp;
     this.despesaService.updateDespesa(form).subscribe(
       () => {
         Swal.fire({
@@ -58,7 +58,7 @@ export class EditDespesasComponent {
       }
     );
   }
-  
+
   cancelar() {
     this.onClose.emit('cancel');
     this.bsModalRef.hide();

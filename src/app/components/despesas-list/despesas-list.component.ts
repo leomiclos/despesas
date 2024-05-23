@@ -110,20 +110,17 @@ export class DespesasListComponent {
           this.despesas = response;
         } else {
           console.log("Nenhum resultado encontrado.");
-          // Aqui você pode tomar alguma ação, como exibir uma mensagem ao usuário
         }
       });
     } else {
       this.getAllDespesas();
     }
 
-    // Adicionando um temporizador para lidar com o caso em que a consulta leva muito tempo
     setTimeout(() => {
       if(this.despesas.length === 0) {
         console.log("Tempo de espera esgotado. Nenhum resultado encontrado.");
-        // Aqui você pode tomar alguma ação, como exibir uma mensagem ao usuário
       }
-    }, 5000); // Espera 5 segundos antes de verificar se não há resultados
+    }, 5000);
   }
 
 

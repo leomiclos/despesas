@@ -23,6 +23,9 @@ th  , td{
 
 }
 
+.add{
+  width: 300px;
+}
 
 .actions{
   height: 200px;
