@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+po-button {
+    --color: rgb(255,255,255);
+    --border-radius: 12px;
+    --font-size: 16px;
+    --background-color: rgb(119,191,12);
+}
+
+po-menu{
+    background-color: antiquewhite;
+}

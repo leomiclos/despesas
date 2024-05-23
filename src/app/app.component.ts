@@ -26,10 +26,6 @@ import {
 })
 export class AppComponent {
   readonly menus: Array<PoMenuItem> = [
-    { label: 'Home', action: this.onClick.bind(this) },
+    { label: 'Home'},
   ];
-
-  private onClick() {
-    alert('Clicked in menu item');
-  }
 }

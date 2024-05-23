@@ -1,6 +1,6 @@
-th, tr, td{
+th  , td{
   border: 1px solid gray;
-  padding: 30px;
+  padding: 20px;
 }
 
 .screen{
@@ -8,4 +8,14 @@ th, tr, td{
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+
+button{
+  height: 50px;
+  border-radius: 10px;
+  margin-top: 10px;
+  background-color: rgb(119,191,12);
+  color: #f1f1f1;
+  border: none;
 }

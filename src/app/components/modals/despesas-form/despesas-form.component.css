@@ -1,0 +1,55 @@
+
+::ng-deep .po-modal-header {
+    background-color: #007bff;
+    color: white;
+    padding: 1rem;
+  }
+  
+  ::ng-deep .po-modal-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #f1f1f1;
+  }
+  
+  ::ng-deep .po-modal-footer .po-button {
+    margin: 0 0.5rem;
+  }
+  
+  ::ng-deep .po-modal-footer .po-button[p-danger="true"] {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  ::ng-deep .po-modal-footer .po-button[p-kind="primary"] {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .modal-header{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .close{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+  }
+
+  button{
+    margin-top: 10px;
+    background-color: rgb(119,191,12);
+    color: #f1f1f1;
+    border: none;
+  }
+
+  button:hover{
+    margin-top: 10px;
+    background-color:#f1f1f1; 
+    color: rgb(119,191,12);
+    border: none;
+  }

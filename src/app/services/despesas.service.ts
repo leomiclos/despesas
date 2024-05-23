@@ -1,51 +1,40 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Despesa } from '../model/despesa';
 import { environment } from '../environment/environment';
 
-interface Despesa {
-  cod_desp: number;
-  Unidade: string;
-  desc_desp: string;
-  tp_desp: number;
-  valor_unit: number;
-  id: number;
-}
+const API_URL = 'http://191.23.83.141:8080/api/esp/v3/despesapadrao';
+const USERNAME = 'super';
+const PASSWORD = 'super';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DespesasService {
+  private apiUrl = environment.apiUrl;
+  private headers: HttpHeaders;
 
-  url = `${environment.apiUrl}`;
-
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.headers = new HttpHeaders({
+      'Authorization': 'Basic ' + btoa(USERNAME + ':' + PASSWORD),
+      'Content-Type': 'application/json'
+    });
+  }
 
   getDespesas(): Observable<Despesa[]> {
-    return this.http.get<Despesa[]>(this.url, this.getHttpOptions());
+    return this.http.get<Despesa[]>(API_URL, { headers: this.headers });
   }
 
-  getDespesaById(id: number): Observable<Despesa> {
-    return this.http.get<Despesa>(`${this.url}/${id}`, this.getHttpOptions());
-  }
-
-  addDespesa(despesa: Despesa): Observable<Despesa> {
-    return this.http.post<Despesa>(this.url, despesa, this.getHttpOptions());
+  createDespesa(despesa: Despesa): Observable<Despesa> {
+    return this.http.post<Despesa>(this.apiUrl, despesa, { headers: this.headers });
   }
 
   updateDespesa(despesa: Despesa): Observable<Despesa> {
-    return this.http.put<Despesa>(this.url, despesa, this.getHttpOptions());
+    return this.http.put<Despesa>(this.apiUrl, despesa, { headers: this.headers });
   }
 
-  deleteDespesa(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.url}/${id}`, this.getHttpOptions());
-  }
-
-  private getHttpOptions() {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Basic ' + btoa('super:super')
-    });
-    return { headers };
+  deleteDespesa(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`, { headers: this.headers });
   }
 }

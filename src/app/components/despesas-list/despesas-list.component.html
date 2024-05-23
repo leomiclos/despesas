@@ -1,29 +1,10 @@
 <div class="screen">
-  <table>
-    <tr>
-      <th>Código</th>
-      <th>Unidade</th>
-      <th>Descrição</th>
-      <th>Tipo de Despesa</th>
-      <th>Valor</th>
-      <th>ID</th>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>LT</td>
-      <td>Abastecimento</td>
-      <td>Visita Técnica</td>
-      <td>R$ 1000,00</td>
-      <td>1</td>
-    </tr>
-  </table>
+  <button class="po-md-4 custom-button" (click)="adicionarDespesa()">Adicionar Despesa</button>
+  <div>
+    <po-table [p-columns]="columns" [p-items]="despesas" [p-striped]="true" (p-delete-items)="excluirDespesa($event)"
+    [p-loading-show-more]="isLoading"
+    [p-actions]="actions" >
+    </po-table>
+    
+  </div>
 </div>
-
-<!-- {
-  "cod_desp": 109,
-  "Unidade": "teste",
-  "desc_desp": "teste",
-  "tp_desp": 0,
-  "valor_unit": 0,
-  "id": 57649
-}, -->
